@@ -1,7 +1,12 @@
 import { Elysia } from "elysia";
+import healthCheckService from "@/application/services/health-check.service";
+import processPaymentService from "@/application/services/process-payment.service";
+import { env } from "@/config/env";
+import { routes } from "@/infrastructure/http/routes";
 
-const app = new Elysia().get("/", () => "Hello Elysia").listen(3000);
+healthCheckService.start();
+processPaymentService.start();
 
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-);
+const _app = new Elysia().use(routes).listen(env.PORT, () => {
+	console.log(`Server is running on http://localhost:${env.PORT}`);
+});

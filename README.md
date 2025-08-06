@@ -1,4 +1,4 @@
-# rinha-backend-2025
+# rinha-backend-2025-bun
 
 To install dependencies:
 
